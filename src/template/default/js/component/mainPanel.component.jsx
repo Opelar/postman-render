@@ -1,47 +1,57 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Request from './request.component.jsx';
+import Response from './response.component.jsx';
+import Event from './event.component.jsx';
+
 
 class MainPanel extends React.Component {
     // 主render函数, render collection
     render() {
-        let items = this.props.data;
+        let cols = this.props.data;
 
-        const list = items.map(item => {
-            this.renderItem(item);
+        const collectionList = cols.map(col => {
+            return this.renderFolder(col);
         });
 
-        return (<div className = 'main'>{list}</div>);
+        return (<div className = 'main'>{collectionList}</div>);
     }
 
     // item render 函数, render folder
-    renderItem(item) {
-        if (!item) {
-            return <div>no item here.</div>;
+    renderFolder(folder) {
+        if (!folder) {
+            return <div>no folder here.</div>;
         }
 
-        let list = item.item || [];
+        // build folder list
+        let folderList = folder.item.map(one => {
+            // TODO: 这里暂时忽略数据中的event, 后期处理
 
-        list.map(one => {
-            return (
+            // build api
+            let api = (
                 <div>
-                    <h5></h5>
+                    <Event data = {one.event} />
+                    <Request data = {one.request} />
+                    <Response data = {one.response} />
+                </div>
+            );
 
+            return (
+                <div key = {one.name}>
+                    <h5>{one.name}</h5>
+                    <p>{one.description}</p>
+                    {api}
                 </div>
             );
         });
 
         return (
-            <div>
-                <h4></h4>
-                <p></p>
+            <div key = {folder.name}>
+                <h4>{folder.name}</h4>
+                <p>{folder.description}</p>
+                {folderList}
             </div>
         );
-    }
-
-    // subItem render函数, render单个请求
-    renderSubItem(one) {
-
     }
 }
 
