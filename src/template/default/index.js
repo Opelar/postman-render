@@ -1,6 +1,6 @@
 // import components & styles
 import {components} from './js/main.component.jsx';
-import styles from './style/main.style.css';
+import styles from './main.style.css';
 
 // some other templates prepreocess here.
 

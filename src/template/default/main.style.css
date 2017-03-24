@@ -1,0 +1,19 @@
+@import './style/header.style.css';
+@import './style/mainPanel.style.css';
+@import './style/footer.style.css';
+
+.header, .footer, .main {
+    width: 100%;
+    margin: 10px auto;;
+    text-align: center;
+    background-color: #b4b4b4;
+}
+
+.header, .footer {
+    height: 60px;
+    line-height: 100%;
+}
+
+.main {
+    height: 600px;
+}

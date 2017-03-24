@@ -4,9 +4,26 @@ import ReactDOM from 'react-dom';
 import {components, styles} from './template/default/index.js';
 
 
-let {Footer, Header, LeftPanel, MainPanel} = components;
+let {Footer, Header, MainPanel} = components;
 
-ReactDOM.render(<Header name = 'header'/>, document.getElementById('header'));
-ReactDOM.render(<LeftPanel name = 'leftPanel'/>, document.getElementById('left'));
-ReactDOM.render(<MainPanel name = 'mainPanel'/>, document.getElementById('main'));
-ReactDOM.render(<Footer name = 'footer'/>, document.getElementById('footer'));
+import sourceData from '../examples/data/postman_echo.postman_collection.json';
+
+let App = (props) => {
+    return (
+        <div>
+            <Header data = {props.data.header}/>
+            <MainPanel data = {props.data.main}/>
+            <Footer data = {props.data.footer}/>
+        </div>
+    );
+};
+
+let data = {
+    header: sourceData.info,
+
+    main: sourceData.item,
+
+    footer: {}
+};
+
+ReactDOM.render(<App data={data}/>, document.getElementById('app'));
